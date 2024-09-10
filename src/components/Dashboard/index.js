@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';  // Importando o CSS externo
@@ -11,7 +11,7 @@ function Dashboard() {
   const navigate = useNavigate();
 
   // Função para buscar as tarefas do backend
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     try {
       const response = await axios.get('http://185.139.1.231:3333/tasks', {
         headers: {
@@ -22,7 +22,7 @@ function Dashboard() {
     } catch (error) {
       console.error('Erro ao buscar tarefas:', error);
     }
-  };
+  }, [token]);  // Inclui 'token' nas dependências para evitar warnings
 
   const addTask = async (e) => {
     e.preventDefault();
@@ -57,15 +57,15 @@ function Dashboard() {
 
   // Buscar tarefas ao carregar o componente
   useEffect(() => {
-    fetchTasks();
-  }, []);
+    fetchTasks();  // Chama a função fetchTasks
+  }, [fetchTasks]);  // Inclui fetchTasks como dependência para evitar warnings
 
   return (
     <div className="dashboard">
-
       <div className="progress-container">
         <div className="header">
           <p className="header-text">Task Manager</p>
+          <button onClick={handleLogout} className="logout-button">Logout</button> {/* Adiciona o botão de logout */}
         </div>
         
         <div className="progress-section">
