@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import './styles.css';  // Importando o CSS externo
+import { FaTrashAlt, FaPlus } from 'react-icons/fa';
+import './styles.css'; // Importando o CSS externo
 
 function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem('token');
-  const navigate = useNavigate();
 
   // Função para buscar as tarefas do backend
   const fetchTasks = useCallback(async () => {
@@ -22,7 +21,7 @@ function Dashboard() {
     } catch (error) {
       console.error('Erro ao buscar tarefas:', error);
     }
-  }, [token]);  // Inclui 'token' nas dependências para evitar warnings
+  }, [token]);
 
   const addTask = async (e) => {
     e.preventDefault();
@@ -49,71 +48,94 @@ function Dashboard() {
     }
   };
 
-  // Função para logout
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
+  // Função para remover tarefa
+  const removeTask = async (id) => {
+    try {
+      await axios.delete(`http://185.139.1.231:3333/tasks/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      fetchTasks(); // Atualiza a lista após remoção
+    } catch (error) {
+      console.error('Erro ao remover tarefa:', error);
+    }
+  };
+
+  // Função para marcar a tarefa como concluída
+  const toggleComplete = async (id, completed) => {
+    try {
+      await axios.put(
+        `http://185.139.1.231:3333/tasks/${id}`,
+        { completed: !completed },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      fetchTasks(); // Atualiza a lista após alteração
+    } catch (error) {
+      console.error('Erro ao atualizar tarefa:', error);
+    }
   };
 
   // Buscar tarefas ao carregar o componente
   useEffect(() => {
-    fetchTasks();  // Chama a função fetchTasks
-  }, [fetchTasks]);  // Inclui fetchTasks como dependência para evitar warnings
+    fetchTasks(); // Chama a função fetchTasks
+  }, [fetchTasks]);
 
   return (
-    <div className="dashboard">
-      <div className="progress-container">
-        <div className="header">
-          <p className="header-text">Task Manager</p>
-          <button onClick={handleLogout} className="logout-button">Logout</button> {/* Adiciona o botão de logout */}
-        </div>
-        
-        <div className="progress-section">
-          <p className="progress-text">Progress</p>
-          <div className="progress-bar-container">
-            <div
-              className="progress-bar"
-              style={{ width: `${(tasks.length / 15) * 100}%` }}
-            ></div>
-          </div>
-          <p className="progress-percentage">
-            {Math.min((tasks.length / 15) * 100, 100).toFixed(0)}%
-          </p>
-        </div>
+    <div className="container">
+      <div className="header">
+        <h2 className="title">Task Manager</h2>
+        <p className="subtitle">{tasks.length} tasks</p>
       </div>
 
-      {/* Lista de Tarefas */}
-      <div className="task-container">
-        {tasks.map((task, index) => (
-          <div key={index} className="task-item">
-            {task.task}
-          </div>
-        ))}
-        <button
-          className="add-task-button"
-          onClick={() => setIsModalOpen(true)}
-        >
-          +
-        </button>
-      </div>
-
-      {/* Modal para adicionar nova tarefa */}
-      {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h2>Adicionar Nova Tarefa</h2>
-            <form onSubmit={addTask}>
+      <ul className="taskList">
+        {tasks.map((task) => (
+          <li key={task.id} className="taskCard">
+            <div className="taskTextContainer">
               <input
-                type="text"
-                placeholder="Digite a nova tarefa"
-                value={newTask}
-                onChange={(e) => setNewTask(e.target.value)}
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleComplete(task.id, task.completed)}
+                className="checkbox"
               />
-              <button type="submit">Adicionar</button>
-              <button type="button" onClick={() => setIsModalOpen(false)}>
-                Cancelar
+              <span className={task.completed ? "taskCompleted" : "taskText"}>{task.task}</span>
+            </div>
+            <button onClick={() => removeTask(task.id)} className="deleteButton">
+              <FaTrashAlt />
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {/* Botão para abrir o modal */}
+      <button className="addButton" onClick={() => setIsModalOpen(true)}>
+        <FaPlus />
+      </button>
+
+      {/* Modal para adicionar tarefa */}
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modalContent">
+            <h3>New Task</h3>
+            <input
+              type="text"
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
+              className="modalInput"
+              placeholder="Enter your task"
+            />
+            <div className="modalActions">
+              <button onClick={addTask} className="modalAddButton">
+                Add Task
               </button>
-            </form>
+              <button onClick={() => setIsModalOpen(false)} className="modalCloseButton">
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}

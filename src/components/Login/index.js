@@ -45,7 +45,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         {error && <p className="error">{error}</p>}
-        <button type="submit">Sign In</button>
+        <button type="submit">Entre</button>
         <div className="signup-link">
           Não tem uma conta ainda? <Link to="/register">Cadastre-se</Link>
         </div>

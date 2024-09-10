@@ -1,177 +1,166 @@
-/* Centralizar a dashboard */
-.dashboard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* Para garantir que ocupa toda a altura da tela */
+.container {
+  max-width: 360px;
+  height: 440px;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  position: relative;
+  margin: auto;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
 }
 
-.progress-container {
-  background: linear-gradient(135deg, #6EC1E4 0%, #2485FF 100%);
+
+/* Resto das estilizações continua igual */
+.container {
+  max-width: 360px;
+  height: 440px;
+  background-color: #f9f9f9;
   border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin: auto;
+  margin-top: 70px; /* Ajusta para não ficar atrás da navbar */
+  font-family: Arial, sans-serif;
 }
 
 .header {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.header-text {
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.task-count {
-  font-size: 16px;
-}
-
-.avatars {
-  display: flex;
-  margin-top: 10px;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid white;
-  margin-right: -10px;
-}
-
-.progress-section {
-  margin-top: 20px;
-  width: 100%;
-}
-
-.progress-text {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.progress-bar-container {
-  background-color: #ffffff80;
-  border-radius: 10px;
-  height: 8px;
-  width: 100%;
-  position: relative;
-}
-
-.progress-bar {
-  background-color: white;
-  border-radius: 10px;
-  height: 100%;
-}
-
-.progress-percentage {
-  font-size: 16px;
-  margin-top: 10px;
-  text-align: right;
-  font-weight: bold;
-}
-
-/* Estilos para a lista de tarefas */
-.task-container {
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 100%;
+  border-radius: 15px;
+  background: linear-gradient(to bottom, #3a7bd5, #00d2ff);
+
 }
 
-.task-item {
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-  color: #333;
+.title {
+  font-size: 24px;
+  color: #e6e6e6;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #e6e6e6;
+}
+
+.taskList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 60px;
+}
+
+.taskCard {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 10px;
 }
 
-.add-task-button {
-  background-color: #2485ff;
+.taskTextContainer {
+  display: flex;
+  align-items: center;
+}
+
+.taskText {
+  font-size: 16px;
+  color: #333;
+}
+
+.taskCompleted {
+  font-size: 16px;
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.deleteButton {
+  background-color: transparent;
+  border: none;
+  color: #ee6371;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.addButton {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.add-task-button:hover {
-  background-color: #1a6ed8;
-}
-
-/* Estilos para o modal */
-.modal-overlay {
+.modal {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.modal {
+
+.modalContent {
+  
+justify-content: center;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  width: 100%; /* Ajuste de largura */
-  max-width: 400px; /* Limite de largura */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.modalInput {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modalActions {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centralizar conteúdo */
 }
 
-.modal input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px; /* Maior espaço abaixo do input */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 16px;
-  box-sizing: border-box; /* Certifica-se que o padding não expande o tamanho */
-}
-
-.modal button {
-  width: 100%; /* Botões agora têm largura completa */
-  padding: 12px;
-  margin-bottom: 10px; /* Espaçamento entre botões */
+.modalAddButton, .modalCloseButton {
+  padding: 10px 20px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
-.modal button[type='submit'] {
-  background: linear-gradient(135deg, #6EC1E4 0%, #2485FF 100%);
+.modalAddButton {
+  background: linear-gradient(to bottom, #3a7bd5, #00d2ff);
   color: white;
 }
 
-.modal button[type='button'] {
-  background-color: #cccccc;
-  color: #727272;
+.modalCloseButton {
+  background-color: #e7e0e0;
+  color: rgb(180, 180, 180);
 }
