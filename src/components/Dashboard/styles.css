@@ -1,0 +1,177 @@
+/* Centralizar a dashboard */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Para garantir que ocupa toda a altura da tela */
+}
+
+.progress-container {
+  background: linear-gradient(135deg, #6EC1E4 0%, #2485FF 100%);
+  border-radius: 20px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.header-text {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.task-count {
+  font-size: 16px;
+}
+
+.avatars {
+  display: flex;
+  margin-top: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-right: -10px;
+}
+
+.progress-section {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.progress-text {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.progress-bar-container {
+  background-color: #ffffff80;
+  border-radius: 10px;
+  height: 8px;
+  width: 100%;
+  position: relative;
+}
+
+.progress-bar {
+  background-color: white;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.progress-percentage {
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: right;
+  font-weight: bold;
+}
+
+/* Estilos para a lista de tarefas */
+.task-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.task-item {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-task-button {
+  background-color: #2485ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.add-task-button:hover {
+  background-color: #1a6ed8;
+}
+
+/* Estilos para o modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%; /* Ajuste de largura */
+  max-width: 400px; /* Limite de largura */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centralizar conteúdo */
+}
+
+.modal input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px; /* Maior espaço abaixo do input */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box; /* Certifica-se que o padding não expande o tamanho */
+}
+
+.modal button {
+  width: 100%; /* Botões agora têm largura completa */
+  padding: 12px;
+  margin-bottom: 10px; /* Espaçamento entre botões */
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.modal button[type='submit'] {
+  background: linear-gradient(135deg, #6EC1E4 0%, #2485FF 100%);
+  color: white;
+}
+
+.modal button[type='button'] {
+  background-color: #cccccc;
+  color: #727272;
+}
