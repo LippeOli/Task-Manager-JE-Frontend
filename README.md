@@ -9,6 +9,7 @@ Este é um projeto de Gerenciador de Tarefas Fullstack desenvolvido como parte d
 Link Site: [https://taskmanagerfelipe.netlify.app/]
 
 
+
 ## Índice
 
 - [Visão Geral](#visão-geral)

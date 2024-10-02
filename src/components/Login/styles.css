@@ -6,9 +6,15 @@
   background-color: #f7f9fc;
 }
 
+.box{
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
 form {
   background: white;
-  padding: 30px;
+  padding: 3px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 400px;
@@ -25,7 +31,7 @@ h1 {
 }
 
 input {
-  width: 100%;
+  width: 92%;
   padding: 12px;
   margin: 10px 0;
   border-radius: 5px;

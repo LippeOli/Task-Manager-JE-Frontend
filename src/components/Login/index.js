@@ -30,25 +30,28 @@ function Login() {
 
   return (
     <div className="login-container">
-      <form onSubmit={handleLogin}>
-        <h1>Login</h1>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {error && <p className="error">{error}</p>}
-        <button type="submit">Entre</button>
-        <div className="signup-link">
-          Não tem uma conta ainda? <Link to="/register">Cadastre-se</Link>
-        </div>
+        <form onSubmit={handleLogin}>
+          <div className='box'>
+            <h1>Login</h1>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {error && <p className="error">{error}</p>}
+            <button type="submit">Entre</button>
+            
+            <div className="signup-link">
+              Não tem uma conta ainda? <Link to="/register">Cadastre-se</Link>
+            </div>
+          </div>
       </form>
     </div>
   );
